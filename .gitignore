@@ -9,3 +9,8 @@
 /secret-mgmt/secret-mgmt-sample/secret-mgmt-sample/bin/Debug/net9.0
 /secret-mgmt/secret-mgmt-sample/secret-mgmt-sample/obj
 /secret-mgmt/secret-mgmt-sample/.vs
+/no-sql-databases/no-sql-database-sample/.vs/no-sql-database-sample
+/no-sql-databases/no-sql-database-sample/mongo-db-demo/bin/Debug/net9.0
+/no-sql-databases/no-sql-database-sample/mongo-db-demo/obj
+/no-sql-databases/no-sql-database-sample/azure-cosmos-db-demo/bin/Debug/net9.0
+/no-sql-databases/no-sql-database-sample/azure-cosmos-db-demo/obj

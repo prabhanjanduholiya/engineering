@@ -1,0 +1,6 @@
+@azure_cosmos_db_demo_HostAddress = http://localhost:5178
+
+GET {{azure_cosmos_db_demo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
