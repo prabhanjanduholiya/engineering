@@ -6,6 +6,7 @@
 * What are public, private and elastic IP addresses?
 * What is the difference between IPV4 and IPV6 addresses?
 * Can restart of EC2 change the public address, how you fix this if IP is consumed outside?
+* What are EC2 placement groups?
 
 ## API Gateway , Load Balancers & Reverse Proxy 
 * What is diffrence between Reverse Proxy, API Gateway and Load Balancers?
