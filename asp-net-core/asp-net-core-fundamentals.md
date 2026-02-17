@@ -156,3 +156,72 @@ https://docs.microsoft.com/en-us/aspnet/core/performance/response-compression?vi
 
 #### How can we do response compression in ASP.NET core? 
 https://docs.microsoft.com/en-us/aspnet/core/performance/response-compression?view=aspnetcore-6.0
+
+
+## Servers 
+#### What are the different techniques for hosting an ASP.NET Core application? 
+###### In-process hosting model -
+Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the Windows Process Activation Service (WAS).
+######  Out-of-process hosting model 
+Using out-of-process hosting, ASP.NET Core apps run in a process separate from the IIS worker process, and the module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the Windows Process Activation Service (WAS). Using a separate process also enables hosting more than one app from the same app pool.
+
+#### What is Kestrel? 
+Kestrel server is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys.
+Kestrel has the following advantages over HTTP.sys:
+
+* Better performance and memory utilization.
+* Cross platform
+* Agility, it's developed and patched independent of the OS.
+* Programmatic port and TLS configuration
+* Extensibility that allows for protocols like PPv2 and alternate transports.
+
+Use Kestrel:
+
+* By itself as an edge server processing requests directly from a network, including the Internet.
+![kestrel-to-internet2](https://user-images.githubusercontent.com/31764786/143542246-f84a31c9-bdef-464d-a754-022f9ff985d9.png)
+
+* With a reverse proxy server, such as Internet Information Services (IIS), Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+
+![kestrel-to-internet](https://user-images.githubusercontent.com/31764786/143542283-b6870e3e-897a-4223-97c8-a197996cb414.png)
+
+
+#### How to add Kestrel server in ASP.NET Core application?  
+* Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
+* ASP.NET Core project templates use Kestrel by default. In Program.cs, the ConfigureWebHostDefaults method calls UseKestrel:
+```
+public static void Main(string[] args)
+{
+    CreateHostBuilder(args).Build().Run();
+}
+
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+#### Can we bind TCP socket with Kestrel server? 
+
+#### What is HTTP.sys server? 
+HTTP.sys server is a Windows-only HTTP server based on the HTTP.sys kernel driver and HTTP Server API.
+Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
+
+* Port sharing
+* Kernel mode windows authentication. Kestrel supports only user-mode authentication.
+* Fast proxying via queue transfers
+* Direct file transmission
+* Response caching
+
+#### What are the features are supported by HTTP.sys server? 
+* Port sharing
+* Kernel mode windows authentication. Kestrel supports only user-mode authentication.
+* Fast proxying via queue transfers
+* Direct file transmission
+* Response caching
+
+#### How to host an application using HTTP.sys server? 
+#### How to host ASP.NET Core application as a Windows service?  
+#### What is ASP.NET Core Module?  
+
